@@ -1,12 +1,12 @@
 package com.example.akbar_atakhodzhaev_m3_hw4;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class CountriesFragment extends Fragment {
@@ -22,10 +22,11 @@ public class CountriesFragment extends Fragment {
     }
 
 
+    @SuppressLint("SetTextI18n")
     public void displayCountries(String continent) {
         if (countryTextView != null) {
             String[] countries = getCountriesForContinent(continent);
-            if (countries != null && countries.length > 0) {
+            if (countries.length > 0) {
                 StringBuilder countryList = new StringBuilder();
                 for (int i = 0; i < Math.min(countries.length, 5); i++) {
                     countryList.append(countries[i]);
@@ -42,18 +43,19 @@ public class CountriesFragment extends Fragment {
 
 
     private String[] getCountriesForContinent(String continent) {
-        if (continent.equals("Африка")) {
-            return new String[]{"Египет", "Кения", "Нигерия", "ЮАР", "Эфиопия", "Гана", "Марокко", "Камерун"};
-        } else if (continent.equals("Азия")) {
-            return new String[]{"Китай", "Индия", "Индонезия", "Пакистан", "Бангладеш", "Япония", "Филиппины", "Вьетнам"};
-        } else if (continent.equals("Европа")) {
-            return new String[]{"Франция", "Германия", "Италия", "Испания", "Великобритания", "Украина", "Польша", "Нидерланды"};
-        } else if (continent.equals("Северная Америка")) {
-            return new String[]{"США", "Канада", "Мексика", "Куба", "Ямайка", "Гаити", "Багамы", "Коста-Рика"};
-        } else if (continent.equals("Южная Америка")) {
-            return new String[]{"Бразилия", "Аргентина", "Колумбия", "Чили", "Перу", "Венесуэла", "Эквадор", "Боливия"};
-        } else if (continent.equals("Австралия")) {
-            return new String[]{"Австралия", "Новая Зеландия", "Папуа-Новая Гвинея", "Фиджи", "Соломоновы острова", "Тонга", "Ниуэ", "Вануату"};
+        switch (continent) {
+            case "Африка":
+                return new String[]{"Египет", "Кения", "Нигерия", "ЮАР", "Эфиопия", "Гана", "Марокко", "Камерун"};
+            case "Азия":
+                return new String[]{"Китай", "Индия", "Индонезия", "Пакистан", "Бангладеш", "Япония", "Филиппины", "Вьетнам"};
+            case "Европа":
+                return new String[]{"Франция", "Германия", "Италия", "Испания", "Великобритания", "Украина", "Польша", "Нидерланды"};
+            case "Северная Америка":
+                return new String[]{"США", "Канада", "Мексика", "Куба", "Ямайка", "Гаити", "Багамы", "Коста-Рика"};
+            case "Южная Америка":
+                return new String[]{"Бразилия", "Аргентина", "Колумбия", "Чили", "Перу", "Венесуэла", "Эквадор", "Боливия"};
+            case "Австралия":
+                return new String[]{"Австралия", "Новая Зеландия", "Папуа-Новая Гвинея", "Фиджи", "Соломоновы острова", "Тонга", "Ниуэ", "Вануату"};
         }
         return new String[0];
     }
